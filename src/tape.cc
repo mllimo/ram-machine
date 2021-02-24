@@ -8,6 +8,11 @@ Tape::~Tape() {}
 
 void Tape::Add(int value) {
   // Excepcion
+  tape_.push_back(value);
+}
+
+void Tape::Insert(int value) {
+  // Excepcion
   tape_.insert(tape_.begin() + head_index_, value);
 }
 
@@ -40,4 +45,5 @@ std::istream& operator>>(std::istream& is, Tape& tape) {
     is >> input_value;
     tape.tape_.push_back(input_value);
   }
+  return is;
 }

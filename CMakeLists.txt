@@ -28,6 +28,7 @@ file(GLOB TESTS
 add_executable(benchmark ${SRC})
 add_executable(tests
   ${TESTS}
+  src/tape.cc
  )
 
 target_link_libraries(tests ${GTEST_LIBRARIES} pthread)

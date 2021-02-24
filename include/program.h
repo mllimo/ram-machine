@@ -13,7 +13,6 @@ class Program {
 
   virtual int Run() = 0;
   virtual void ShowUsage() const = 0;
-  virtual void ReParseArgv() = 0;
 
  protected: 
   std::vector<std::string> arg_;

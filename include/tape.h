@@ -11,6 +11,7 @@ class Tape {
   ~Tape();
 
   void Add(int value);
+  void Insert(int value);
   int Get() const;
   void MoveRight();
   void MoveLeft();
