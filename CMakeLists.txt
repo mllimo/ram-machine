@@ -13,11 +13,13 @@ include_directories(${GTEST_INCLUDE_DIRS})
 
 # Codigo fuente
 include_directories(
-  "include" 
+  "include"
+  "include/instructions" 
 )
 
 file(GLOB SRC 
   "src/*.cc"
+  "src/instructions/*.cc"
 )
 
 file(GLOB TESTS 

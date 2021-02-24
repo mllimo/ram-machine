@@ -12,6 +12,7 @@ class Memory {
 
   template <typename Other>
   friend std::ostream& operator<<(std::ostream& os, const Memory<Other>& memory);
+  inline std::unordered_map<size_t, Type>& GetTable();
 
  private:
   std::unordered_map<size_t, Type> table_;
@@ -20,6 +21,11 @@ class Memory {
 typedef Memory<int> MemoryI;
 typedef Memory<float> MemoryF;
 typedef Memory<std::string> MemoryS;
+
+template<typename Type>
+std::unordered_map<size_t, Type>& Memory<Type>::GetTable() {
+  return table_;
+}
 
 template <typename Type>
 Type& Memory<Type>::operator[](size_t register_index) {

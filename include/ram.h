@@ -11,16 +11,18 @@
 
 class Ram {
  public:
-  Ram();
   Ram(const std::string& program_path);
   ~Ram();
 
   void Run();
-  friend std::istream& operator>>(std::istream& is, const Ram& ram);
+  void ImportInputTape(const std::string& input_path);
+  void ExportOutputTape(const std::string& output_path);
+  friend std::ostream& operator<<(std::ostream& os, const Ram& ram);
+  friend std::istream& operator>>(std::istream& is, Ram& ram);
 
  private:
   Memory<int> registers_;
-  Memory<Instruction> program_;
+  Memory<Instruction*> program_;
   size_t program_counter_;
   Tape input_tape_;
   Tape output_tape_;
