@@ -36,3 +36,13 @@ TEST(Tape, MoveLeft) {
   tape.MoveLeft();
   EXPECT_EQ(true, 2 == tape.Get());
 }
+
+TEST(Tape, Pantalla) {
+  Tape tape;
+  tape.Add(2);
+  tape.Add(3);
+  tape.Add(5);
+  tape.Add(6);
+  std::cout << tape << std::endl;
+  EXPECT_EQ(true, true);
+}

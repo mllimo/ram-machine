@@ -25,7 +25,7 @@ file(GLOB TESTS
 )
 
 # Compilacion - enlazado
-add_executable(benchmark ${SRC})
+add_executable(ram_sim ${SRC})
 add_executable(tests
   ${TESTS}
   src/tape.cc
