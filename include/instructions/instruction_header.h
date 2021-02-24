@@ -1,6 +1,7 @@
 #ifndef INSTRUCTION_HEADER_H
 #define INSTRUCTION_HEADER_H
 
+#include "instruction.h"
 #include "add.h"
 #include "sub.h"
 #include "mult.h"

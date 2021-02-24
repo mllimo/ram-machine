@@ -8,11 +8,9 @@ class Div : public Instruction {
   using Instruction::Instruction;
   ~Div();
 
-  virtual void Execute();
-  virtual void SetOperand(const std::string& operand);
+  void Execute();
+  void SetOperand(const std::string& operand);
 
- protected:
-  virtual void InitName();
 };
 
 #endif

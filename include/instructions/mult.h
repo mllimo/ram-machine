@@ -8,11 +8,9 @@ class Mult : public Instruction {
   using Instruction::Instruction;
   ~Mult();
 
-  virtual void Execute();
-  virtual void SetOperand(const std::string& operand);
+  void Execute();
+  void SetOperand(const std::string& operand);
 
- protected:
-  virtual void InitName();
 };
 
 #endif

@@ -14,6 +14,7 @@
 
 class Ram {
  public:
+  friend class Instruction;
   Ram();
   Ram(const std::string& program_path);
   ~Ram();

@@ -8,11 +8,9 @@ class Jgtz : public Instruction {
   using Instruction::Instruction;
   ~Jgtz();
 
-  virtual void Execute();
-  virtual void SetOperand(const std::string& operand);
+  void Execute();
+  void SetOperand(const std::string& operand);
 
- protected:
-  virtual void InitName();
 };
 
 #endif

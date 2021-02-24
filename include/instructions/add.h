@@ -8,11 +8,10 @@ class Add : public Instruction {
   using Instruction::Instruction;
   ~Add();
 
-  virtual void Execute();
-  virtual void SetOperand(const std::string& operand);
+  void Execute();
+  void SetOperand(const std::string& operand);
 
- protected:
-  virtual void InitName();
+
 };
 
 #endif

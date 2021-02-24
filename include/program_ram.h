@@ -6,7 +6,6 @@
 
 class ProgramRam : public Program {
  public:
-  friend class Instruction;
   using Program::Program;
   ~ProgramRam();
 
