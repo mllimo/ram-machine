@@ -7,11 +7,13 @@
 struct Regex {
   Regex() : instruction("load|store|add|sub|mult|div|head|read|write|jump|jgtz|jzero|halt"),
             comments(";.*[\r\n]*"),
-            label("(\\w|\\d)+:") {
+            label("(\\w|\\d)+:"),
+            operand("(\\*|=)?\\d+|(\\w|\\d)+") {
   }
   std::regex instruction;
   std::regex comments;
   std::regex label;
+  std::regex operand;
 };
 
 #endif

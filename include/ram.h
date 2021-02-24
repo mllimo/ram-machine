@@ -2,11 +2,12 @@
 #define RAM_H
 
 #include <fstream>
+#include <functional>
 #include <iostream>
 #include <string>
 #include <unordered_map>
 
-#include "instructions/instruction.h"
+#include "instructions/instruction_header.h"
 #include "memory.h"
 #include "regular_expresions.h"
 #include "tape.h"
@@ -29,10 +30,14 @@ class Ram {
   size_t program_counter_;
   Tape input_tape_;
   Tape output_tape_;
-  std::unordered_map<std::string, size_t> label_index_;
   bool stop_;
 
-  void ParseInstruction(const std::string& instruction);
+  std::unordered_map<std::string, size_t> label_index_;
+  std::unordered_map<std::string, std::function<Instruction*(void)>> instruction_set_;
+
+  void BuildInstructionSet();
+  void AddInstruction(std::pair<std::string, std::string> parsed, size_t counter);
+  std::pair<std::string, std::string> ParseInstruction(const std::string& dirty_instruction);
 };
 
 #endif

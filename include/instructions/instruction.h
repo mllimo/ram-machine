@@ -8,10 +8,12 @@ class Ram;
 
 class Instruction {
  public:
-  Instruction(Ram* ram, const std::string& operand);
+  Instruction(Ram* mediator);
+  Instruction(Ram* mediator, const std::string& operand);
   virtual ~Instruction();
 
   virtual void Execute() = 0;
+  virtual void SetOperand(const std::string& operand);
 
  protected:
   Ram* mediator_;
