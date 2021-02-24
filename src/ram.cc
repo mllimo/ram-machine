@@ -57,7 +57,9 @@ void Ram::ExportOutputTape(const std::string& output_path) {
   output.close();
 }
 
-void Ram::AddInstruction(std::pair<std::string, std::string> parsed, size_t counter) {
+void Ram::AddInstructionProgram(std::pair<std::string, std::string> parsed, size_t counter) {
+  program_[counter] = instruction_set_[parsed.first]();
+  program_[counter]->SetOperand(parsed.second);
 }
 
 std::pair<std::string, std::string> Ram::ParseInstruction(const std::string& dirty_instruction) {
@@ -86,6 +88,7 @@ std::istream& operator>>(std::istream& is, Ram& ram) {
   size_t instruction_counter = 0;
 
   while (std::getline(is, line)) {
+    std::transform(line.begin(), line.end(), line.begin(), [](unsigned char c) { return std::tolower(c); });
     label = "";
     std::smatch matchC;
     std::smatch matchL;
@@ -100,7 +103,7 @@ std::istream& operator>>(std::istream& is, Ram& ram) {
 
     if (line.size() == 0) continue;
     ram.label_index_.insert({label, instruction_counter});
-    ram.AddInstruction(ram.ParseInstruction(line), instruction_counter);
+    ram.AddInstructionProgram(ram.ParseInstruction(line), instruction_counter);
     ++instruction_counter;
   }
 

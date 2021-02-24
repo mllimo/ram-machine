@@ -36,7 +36,7 @@ class Ram {
   std::unordered_map<std::string, std::function<Instruction*(void)>> instruction_set_;
 
   void BuildInstructionSet();
-  void AddInstruction(std::pair<std::string, std::string> parsed, size_t counter);
+  void AddInstructionProgram(std::pair<std::string, std::string> parsed, size_t counter);
   std::pair<std::string, std::string> ParseInstruction(const std::string& dirty_instruction);
 };
 
