@@ -3,6 +3,8 @@
 ProgramRam::~ProgramRam() {}
 
 int ProgramRam::Run() {
+  Ram ram(arg_[1]);
+  return 0;
 }
 
 void ProgramRam::ShowUsage() const {

@@ -4,13 +4,16 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <unordered_map>
 
 #include "instructions/instruction.h"
 #include "memory.h"
+#include "regular_expresions.h"
 #include "tape.h"
 
 class Ram {
  public:
+  Ram();
   Ram(const std::string& program_path);
   ~Ram();
 
@@ -26,6 +29,10 @@ class Ram {
   size_t program_counter_;
   Tape input_tape_;
   Tape output_tape_;
+  std::unordered_map<std::string, size_t> label_index_;
+  bool stop_;
+
+  void ParseInstruction(const std::string& instruction);
 };
 
 #endif

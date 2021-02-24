@@ -2,6 +2,7 @@
 #define PROGRAM_RAM_H
 
 #include "program.h"
+#include "ram.h"
 
 class ProgramRam : public Program {
  public:

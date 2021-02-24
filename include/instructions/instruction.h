@@ -3,18 +3,22 @@
 
 #include <iostream>
 #include <string>
-#include "../ram.h"
+
+class Ram;
 
 class Instruction {
  public:
-  Instruction(Ram& mediator);
+  Instruction(Ram* ram, const std::string& operand);
   virtual ~Instruction();
 
- protected:
-  class Ram* mediator_;
-  std::string name_;
+  virtual void Execute() = 0;
 
-  virtual void InitName() = 0;
+ protected:
+  Ram* mediator_;
+  std::string name_;
+  std::string operand_;
+
+  virtual void InitName();
 };
 
 #endif
