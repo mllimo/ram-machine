@@ -4,14 +4,14 @@ Ram::Ram() {
   BuildInstructionSet();
   instructions_executed_ = 0;
   registers_[0] = 0;
-  stop_ = true;
+  stop_ = false;
 }
 
 Ram::Ram(const std::string& program_path) {
   BuildInstructionSet();
   instructions_executed_ = 0;
   registers_[0] = 0;
-  stop_ = true;
+  stop_ = false;
   std::fstream input(program_path, std::ios_base::in);
   if (!input.is_open()) throw;
   input >> *this;
@@ -100,9 +100,9 @@ std::istream& operator>>(std::istream& is, Ram& ram) {
     std::regex_search(line, matchC, Regex::Get().comments);  // Eliminamos comentarios
     line.erase(line.begin() + matchC.position(), line.begin() + matchC.position() + matchC.length());
     std::regex_search(line, matchL, Regex::Get().tag);       // Capturamos etiquestas y eliminamos
+    tag = std::string(line.begin() + matchL.position(), line.begin() + matchL.position() + matchL.length());
     line.erase(line.begin() + matchL.position(), line.begin() + matchL.position() + matchL.length());
-    if (matchL.size() > 0) {
-      tag = matchL[0];
+    if (tag.size() > 0) {
       tag.pop_back();
     }
 

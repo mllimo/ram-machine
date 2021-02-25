@@ -4,6 +4,9 @@ ProgramRam::~ProgramRam() {}
 
 int ProgramRam::Run() {
   Ram ram(arg_[1]);
+  ram.ImportInputTape(arg_[2]);
+  ram.Run();
+  ram.ImportInputTape(arg_[3]);
   std::cout << ram << std::endl;
   return 0;
 }

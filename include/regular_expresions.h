@@ -12,7 +12,7 @@ struct Regex {
             tag_operand("(\\w|\\d)+"),
             literal_operand("=(\\d+)"),
             register_operand("(\\d+)"),
-            pointer_operand("*(\\d+)"){
+            pointer_operand("\\*(\\d+)"){
   }
 
   static Regex Get() {
