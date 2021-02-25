@@ -8,6 +8,7 @@
 #include <unordered_map>
 
 #include "instructions/instruction_header.h"
+#include "program_counter.h"
 #include "memory.h"
 #include "regular_expresions.h"
 #include "tape.h"
@@ -28,10 +29,11 @@ class Ram {
  private:
   Memory<int> registers_;
   Memory<Instruction*> program_;
-  size_t program_counter_;
+  ProgramCounter program_counter_;
   Tape input_tape_;
   Tape output_tape_;
   bool stop_;
+  size_t instructions_executed_;
 
   std::unordered_map<std::string, size_t> label_index_;
   std::unordered_map<std::string, std::function<Instruction*(void)>> instruction_set_;

@@ -10,3 +10,6 @@ void Halt::SetOperand(const std::string& operand) {
   
 }
 
+void Halt::InitName() {
+  name_ = "halt";
+}

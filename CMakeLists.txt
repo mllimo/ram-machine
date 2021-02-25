@@ -31,6 +31,7 @@ add_executable(ram_sim ${SRC})
 add_executable(tests
   ${TESTS}
   src/tape.cc
+  src/program_counter.cc
  )
 
 target_link_libraries(tests ${GTEST_LIBRARIES} pthread)

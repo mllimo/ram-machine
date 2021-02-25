@@ -10,3 +10,7 @@ void Div::SetOperand(const std::string& operand) {
   
 }
 
+void Div::InitName() {
+  name_ = "div";
+}
+

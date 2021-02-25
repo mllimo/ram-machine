@@ -10,3 +10,6 @@ void Store::SetOperand(const std::string& operand) {
   
 }
 
+void Store::InitName() {
+  name_ = "store";
+}

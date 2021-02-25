@@ -10,3 +10,6 @@ void Mult::SetOperand(const std::string& operand) {
   
 }
 
+void Mult::InitName() {
+  name_ = "mult";
+}

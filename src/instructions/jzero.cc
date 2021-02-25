@@ -10,3 +10,6 @@ void Jzero::SetOperand(const std::string& operand) {
   
 }
 
+void Jzero::InitName() {
+  name_ = "jzero";
+}

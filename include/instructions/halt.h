@@ -11,6 +11,8 @@ class Halt : public Instruction {
   void Execute();
   void SetOperand(const std::string& operand);
 
+ protected:
+  void InitName();
 };
 
 #endif

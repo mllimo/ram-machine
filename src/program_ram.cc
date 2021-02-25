@@ -4,6 +4,7 @@ ProgramRam::~ProgramRam() {}
 
 int ProgramRam::Run() {
   Ram ram(arg_[1]);
+  std::cout << ram << std::endl;
   return 0;
 }
 

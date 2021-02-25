@@ -10,3 +10,6 @@ void Load::SetOperand(const std::string& operand) {
   
 }
 
+void Load::InitName() {
+  name_ = "load";
+}

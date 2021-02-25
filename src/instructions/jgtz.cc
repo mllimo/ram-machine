@@ -9,3 +9,7 @@ void Jgtz::Execute() {
 void Jgtz::SetOperand(const std::string& operand) {
   
 }
+
+void Jgtz::InitName() {
+  name_ = "jgtz";
+}

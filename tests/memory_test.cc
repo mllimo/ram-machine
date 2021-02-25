@@ -13,6 +13,14 @@ TEST(Memory, Acceso) {
   EXPECT_EQ(true, memory_int[10] == 123);  // Si llega a esta linea funciona
 }
 
+TEST(Memory, Tamanio) {
+  MemoryI memory_int;
+  memory_int[10] = 123;
+  EXPECT_EQ(true, memory_int.Size() == 1);  // Si llega a esta linea funciona
+  memory_int[1] = 12;
+  EXPECT_EQ(true, memory_int.Size() == 2);
+}
+
 TEST(Memory, Pantalla) {
   MemoryI memory_int;
   memory_int[10] = 123;

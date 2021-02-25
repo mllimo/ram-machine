@@ -2,13 +2,13 @@
 
 Ram::Ram() {
   BuildInstructionSet();
-  program_counter_ = 0;
+  instructions_executed_ = 0;
   stop_ = true;
 }
 
 Ram::Ram(const std::string& program_path) {
   BuildInstructionSet();
-  program_counter_ = 0;
+  instructions_executed_ = 0;
   stop_ = true;
   std::fstream input(program_path, std::ios_base::in);
   if (!input.is_open()) throw;
@@ -41,6 +41,11 @@ void Ram::BuildInstructionSet() {
 }
 
 void Ram::Run() {
+  while (!stop_ && program_counter_.Get() < program_.Size()) {
+    program_[program_counter_.Get()]->Execute();
+    program_counter_++;
+    ++instructions_executed_;
+  }
 }
 
 void Ram::ImportInputTape(const std::string& input_path) {
@@ -94,7 +99,7 @@ std::istream& operator>>(std::istream& is, Ram& ram) {
     std::smatch matchL;
     std::regex_search(line, matchC, regex.comments);  // Eliminamos comentarios
     line.erase(line.begin() + matchC.position(), line.begin() + matchC.position() + matchC.length());
-    std::regex_search(line, matchL, regex.label);
+    std::regex_search(line, matchL, regex.label);  // Capturamos etiquestas y eliminamos
     line.erase(line.begin() + matchL.position(), line.begin() + matchL.position() + matchL.length());
     if (matchL.size() > 0) {
       label = matchL[0];
@@ -111,5 +116,9 @@ std::istream& operator>>(std::istream& is, Ram& ram) {
 }
 
 std::ostream& operator<<(std::ostream& os, const Ram& ram) {
+  os << "Cinta de entrada: " << ram.input_tape_ << std::endl;
+  os << "Cinta de salida: " << ram.output_tape_ << std::endl;
+  os << "Instrucciones ejecutadas: " << ram.instructions_executed_ << std::endl;
+  os << "Registros: " << ram.registers_ << std::endl;
   return os;
 }

@@ -10,3 +10,6 @@ void Write::SetOperand(const std::string& operand) {
   
 }
 
+void Write::InitName() {
+  name_ = "write";
+}
