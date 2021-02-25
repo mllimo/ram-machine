@@ -1,4 +1,5 @@
 #include "../../include/instructions/instruction.h"
+#include "../../include/ram.h"
 
 Instruction::Instruction(Ram* mediator) {
   mediator_ = mediator;

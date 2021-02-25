@@ -1,9 +1,11 @@
 #include "../../include/instructions/halt.h"
+#include "../../include/ram.h"
 
 Halt::~Halt() {
 }
 
 void Halt::Execute() {
+  mediator_->stop_ = true;
 }
 
 void Halt::SetOperand(const std::string& operand) {

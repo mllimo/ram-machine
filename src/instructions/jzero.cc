@@ -1,9 +1,15 @@
 #include "../../include/instructions/jzero.h"
 
+#include "../../include/ram.h"
+
 Jzero::~Jzero() {
 }
 
 void Jzero::Execute() {
+  if (mediator_->registers_[0] != 0) return;
+  auto it = mediator_->tag_index_.find(operand_);
+  if (it == mediator_->tag_index_.end()) throw "NO SE ENCUENTRA LA ETIQUETA";
+  mediator_->program_counter_.Set(it->second);
 }
 
 void Jzero::SetOperand(const std::string& operand) {

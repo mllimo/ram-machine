@@ -8,14 +8,27 @@
 #include <unordered_map>
 
 #include "instructions/instruction_header.h"
-#include "program_counter.h"
 #include "memory.h"
+#include "program_counter.h"
 #include "regular_expresions.h"
 #include "tape.h"
 
 class Ram {
  public:
-  friend class Instruction;
+  friend Instruction;
+  friend Add;
+  friend Sub;
+  friend Div;
+  friend Mult;
+  friend Load;
+  friend Store;
+  friend Read;
+  friend Write;
+  friend Jump;
+  friend Jzero;
+  friend Jgtz;
+  friend Halt;
+
   Ram();
   Ram(const std::string& program_path);
   ~Ram();
@@ -27,7 +40,7 @@ class Ram {
   friend std::istream& operator>>(std::istream& is, Ram& ram);
 
  private:
-  Memory<int> registers_;
+  MemoryI registers_;
   Memory<Instruction*> program_;
   ProgramCounter program_counter_;
   Tape input_tape_;

@@ -1,9 +1,25 @@
 #include "../../include/instructions/read.h"
 
+#include "../../include/ram.h"
+
 Read::~Read() {
 }
 
 void Read::Execute() {
+  int value;
+  switch (mode_) {
+    case POINTER:
+      value = stoi(std::string(operand_.begin() + 1, operand_.end()));
+      value = mediator_->registers_[value];
+      break;
+
+    case REGISTER:
+      value = stoi(operand_);
+      break;
+  }
+
+  mediator_->registers_[value] = mediator_->input_tape_.Get();
+  mediator_->input_tape_.MoveRight();
 }
 
 void Read::SetOperand(const std::string& operand) {

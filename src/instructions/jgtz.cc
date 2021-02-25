@@ -1,9 +1,14 @@
 #include "../../include/instructions/jgtz.h"
+#include "../../include/ram.h"
 
 Jgtz::~Jgtz() {
 }
 
 void Jgtz::Execute() {
+  if (mediator_->registers_[0] <= 0) return;
+  auto it = mediator_->tag_index_.find(operand_);
+  if (it == mediator_->tag_index_.end()) throw "NO SE ENCUENTRA LA ETIQUETA";
+  mediator_->program_counter_.Set(it->second);
 }
 
 void Jgtz::SetOperand(const std::string& operand) {

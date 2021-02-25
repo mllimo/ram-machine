@@ -1,9 +1,14 @@
 #include "../../include/instructions/jump.h"
 
+#include "../../include/ram.h"
+
 Jump::~Jump() {
 }
 
 void Jump::Execute() {
+  auto it = mediator_->tag_index_.find(operand_);
+  if (it == mediator_->tag_index_.end()) throw "NO SE ENCUENTRA LA ETIQUETA";
+  mediator_->program_counter_.Set(it->second);
 }
 
 void Jump::SetOperand(const std::string& operand) {
