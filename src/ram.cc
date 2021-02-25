@@ -3,12 +3,14 @@
 Ram::Ram() {
   BuildInstructionSet();
   instructions_executed_ = 0;
+  registers_[0] = 0;
   stop_ = true;
 }
 
 Ram::Ram(const std::string& program_path) {
   BuildInstructionSet();
   instructions_executed_ = 0;
+  registers_[0] = 0;
   stop_ = true;
   std::fstream input(program_path, std::ios_base::in);
   if (!input.is_open()) throw;
@@ -73,13 +75,12 @@ std::pair<std::string, std::string> Ram::ParseInstruction(const std::string& dir
   std::string aux = dirty_instruction;
   std::string clean_instruction = dirty_instruction;
   std::string operand;
-  Regex regex;
 
-  std::regex_search(dirty_instruction, matchI, regex.instruction);
+  std::regex_search(dirty_instruction, matchI, Regex::Get().instruction);
   aux.erase(aux.begin() + matchI.position(), aux.begin() + matchI.position() + matchI.length());
   clean_instruction = matchI[0];
 
-  std::regex_search(aux, matchO, regex.operand);
+  std::regex_search(aux, matchO, Regex::Get().operand);
   if (matchO.size() > 0)
     operand = matchO[0];
 
@@ -88,26 +89,25 @@ std::pair<std::string, std::string> Ram::ParseInstruction(const std::string& dir
 
 std::istream& operator>>(std::istream& is, Ram& ram) {
   std::string line;
-  std::string label;
-  Regex regex;
+  std::string tag;
   size_t instruction_counter = 0;
 
   while (std::getline(is, line)) {
     std::transform(line.begin(), line.end(), line.begin(), [](unsigned char c) { return std::tolower(c); });
-    label = "";
+    tag = "";
     std::smatch matchC;
     std::smatch matchL;
-    std::regex_search(line, matchC, regex.comments);  // Eliminamos comentarios
+    std::regex_search(line, matchC, Regex::Get().comments);  // Eliminamos comentarios
     line.erase(line.begin() + matchC.position(), line.begin() + matchC.position() + matchC.length());
-    std::regex_search(line, matchL, regex.label);  // Capturamos etiquestas y eliminamos
+    std::regex_search(line, matchL, Regex::Get().tag);       // Capturamos etiquestas y eliminamos
     line.erase(line.begin() + matchL.position(), line.begin() + matchL.position() + matchL.length());
     if (matchL.size() > 0) {
-      label = matchL[0];
-      label.pop_back();
+      tag = matchL[0];
+      tag.pop_back();
     }
 
     if (line.size() == 0) continue;
-    ram.label_index_.insert({label, instruction_counter});
+    ram.tag_index_.insert({tag, instruction_counter});
     ram.AddInstructionProgram(ram.ParseInstruction(line), instruction_counter);
     ++instruction_counter;
   }

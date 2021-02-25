@@ -7,7 +7,7 @@ void Halt::Execute() {
 }
 
 void Halt::SetOperand(const std::string& operand) {
-  
+  if (operand.size() != 0) throw "NO NECESITA ARGUMENTOS";
 }
 
 void Halt::InitName() {

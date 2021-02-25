@@ -3,6 +3,10 @@
 
 #include <iostream>
 #include <string>
+#include <regex>
+#include "../regular_expresions.h"
+
+enum OperandMode {LITERAL, REGISTER, POINTER, TAG};
 
 class Ram;
 
@@ -20,6 +24,7 @@ class Instruction {
   Ram* mediator_;
   std::string name_;
   std::string operand_;
+  OperandMode mode_;
 
   virtual void InitName();
 };

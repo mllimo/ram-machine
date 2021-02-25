@@ -35,7 +35,7 @@ class Ram {
   bool stop_;
   size_t instructions_executed_;
 
-  std::unordered_map<std::string, size_t> label_index_;
+  std::unordered_map<std::string, size_t> tag_index_;
   std::unordered_map<std::string, std::function<Instruction*(void)>> instruction_set_;
 
   void BuildInstructionSet();
