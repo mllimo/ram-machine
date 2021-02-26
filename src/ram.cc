@@ -99,15 +99,15 @@ std::istream& operator>>(std::istream& is, Ram& ram) {
     std::smatch matchL;
     std::regex_search(line, matchC, Regex::Get().comments);  // Eliminamos comentarios
     line.erase(line.begin() + matchC.position(), line.begin() + matchC.position() + matchC.length());
-    std::regex_search(line, matchL, Regex::Get().tag);       // Capturamos etiquestas y eliminamos
+    std::regex_search(line, matchL, Regex::Get().tag);  // Capturamos etiquestas y eliminamos
     tag = std::string(line.begin() + matchL.position(), line.begin() + matchL.position() + matchL.length());
     line.erase(line.begin() + matchL.position(), line.begin() + matchL.position() + matchL.length());
     if (tag.size() > 0) {
       tag.pop_back();
     }
 
-    if (line.size() == 0) continue;
-    ram.tag_index_.insert({tag, instruction_counter});
+    if (line.size() == 0 || std::regex_match(line, std::regex("\\s+"))) continue;
+    if (tag.size() > 0) ram.tag_index_.insert({tag, instruction_counter});
     ram.AddInstructionProgram(ram.ParseInstruction(line), instruction_counter);
     ++instruction_counter;
   }

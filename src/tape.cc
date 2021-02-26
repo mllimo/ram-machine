@@ -32,9 +32,11 @@ void Tape::MoveLeft() {
 }
 
 std::ostream& operator<<(std::ostream& os, const Tape& tape) {
+  size_t index = 0;
   os << "{";
   for (auto& value : tape.tape_)
-    os << value << (value != tape.tape_.back() ? ", " : "");
+    os << value << (index++ != tape.tape_.size() - 1 ? ", " : "");
+
   os << "}";
   return os;
 }
