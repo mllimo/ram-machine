@@ -1,17 +1,13 @@
 #include "../include/ram.h"
 
 Ram::Ram() {
-  BuildInstructionSet();
-  instructions_executed_ = 0;
-  registers_[0] = 0;
-  stop_ = false;
+  is_debug_ = 0;
+  Initialize();
 }
 
-Ram::Ram(const std::string& program_path) {
-  BuildInstructionSet();
-  instructions_executed_ = 0;
-  registers_[0] = 0;
-  stop_ = false;
+Ram::Ram(const std::string& program_path, bool is_debug) {
+  Initialize();
+  is_debug_ = is_debug;
   std::fstream input(program_path, std::ios_base::in);
   if (!input.is_open()) throw;
   input >> *this;
@@ -24,6 +20,13 @@ Ram::~Ram() {
       delete instruction.second;
       instruction.second = NULL;
     }
+}
+
+void Ram::Initialize() {
+  BuildInstructionSet();
+  instructions_executed_ = 0;
+  registers_[0] = 0;
+  stop_ = false;
 }
 
 void Ram::BuildInstructionSet() {
@@ -44,6 +47,10 @@ void Ram::BuildInstructionSet() {
 
 void Ram::Run() {
   while (!stop_ && program_counter_.Get() < program_.Size()) {
+    if (is_debug_)
+      if (!Debug())
+        continue;
+
     program_[program_counter_.Get()]->Execute();
     program_counter_++;
     ++instructions_executed_;
@@ -121,4 +128,58 @@ std::ostream& operator<<(std::ostream& os, const Ram& ram) {
   os << "Instrucciones ejecutadas: " << ram.instructions_executed_ << std::endl;
   os << "Registros: " << ram.registers_ << std::endl;
   return os;
+}
+
+bool Ram::Debug() {
+  static char option;
+  bool good_option;
+  while (!good_option) {
+    good_option = true;
+    std::cin >> option;
+    switch (option) {
+      case 'r':
+        std::cout << registers_ << std::endl;
+        return false;
+        break;
+
+      case 't':
+        Disassemble();
+        return true;
+        break;
+
+      case 'e':
+        is_debug_ = false;
+        return true;
+        break;
+
+      case 'i':
+        std::cout << input_tape_ << std::endl;
+        return false;
+        break;
+
+      case 'o':
+        std::cout << output_tape_ << std::endl;
+        return false;
+        break;
+
+      case 'h':
+        HelpDebug();
+        return false;
+        break;
+
+      case 'x':
+        stop_ = true;
+        return false;
+        break;
+
+      default:
+        std::cout << "> Instroduzca una opcción correcta. Pruebe h para obtener ayuda\n";
+        good_option = false;
+        break;
+    }
+  }
+}
+
+void Ram::Disassemble() {
+  std::cout << *program_[program_counter_.Get()] << std::endl;
 }

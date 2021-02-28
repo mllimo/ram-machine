@@ -30,7 +30,7 @@ class Ram {
   friend Halt;
 
   Ram();
-  Ram(const std::string& program_path);
+  Ram(const std::string& program_path, bool is_debug = 0);
   ~Ram();
 
   void Run();
@@ -46,11 +46,16 @@ class Ram {
   Tape input_tape_;
   Tape output_tape_;
   bool stop_;
+  bool is_debug_;
   size_t instructions_executed_;
 
   std::unordered_map<std::string, size_t> tag_index_;
   std::unordered_map<std::string, std::function<Instruction*(void)>> instruction_set_;
 
+  bool Debug();
+  void HelpDebug();
+  void Disassemble();
+  void Initialize();
   void BuildInstructionSet();
   void AddInstructionProgram(std::pair<std::string, std::string> parsed, size_t counter);
   std::pair<std::string, std::string> ParseInstruction(const std::string& dirty_instruction);
