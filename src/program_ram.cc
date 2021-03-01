@@ -3,11 +3,23 @@
 ProgramRam::~ProgramRam() {}
 
 int ProgramRam::Run() {
-  Ram ram(arg_[1], std::stoi(arg_[4]));
-  ram.ImportInputTape(arg_[2]);
-  ram.Run();
-  ram.ExportOutputTape(arg_[3]);
-  std::cout << ram << std::endl;
+  try {
+    if (arg_.size() != 5) throw BadNumberArgumentsException(4, arg_.size() - 1);
+    Ram ram(arg_[1], std::stoi(arg_[4]));
+    ram.ImportInputTape(arg_[2]);
+    ram.Run();
+    ram.ExportOutputTape(arg_[3]);
+    if (std::stoi(arg_[4]) == 0)
+      std::cout << "Instructions executed: " << ram.InstructionsExecuted() << std::endl;
+  } catch (std::runtime_error& error) {
+    std::cout << error.what() << std::endl;
+  } catch (IoException& error) {
+    std::cout << error.what() << std::endl;
+  } catch (InstructionException& error) {
+    std::cout << error.what() << std::endl;
+  } catch (RamException& error) {
+    std::cout << error.what() << std::endl;
+  }
   return 0;
 }
 

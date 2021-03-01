@@ -38,8 +38,9 @@ class Ram {
   void Run();
   void ImportInputTape(const std::string& input_path);
   void ExportOutputTape(const std::string& output_path);
-  friend std::ostream& operator<<(std::ostream& os, const Ram& ram);
   friend std::istream& operator>>(std::istream& is, Ram& ram);
+  friend std::ostream& operator<<(std::ostream& os, const Ram& ram);
+  inline size_t InstructionsExecuted() { return instructions_executed_; }
 
  private:
   MemoryI registers_;
