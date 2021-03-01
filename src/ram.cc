@@ -106,7 +106,7 @@ std::istream& operator>>(std::istream& is, Ram& ram) {
     std::smatch matchL;
     std::regex_search(line, matchC, Regex::Get().comments);  // Eliminamos comentarios
     line.erase(line.begin() + matchC.position(), line.begin() + matchC.position() + matchC.length());
-    std::regex_search(line, matchL, Regex::Get().tag);  // Capturamos etiquestas y eliminamos
+    std::regex_search(line, matchL, Regex::Get().tag);  // Capturamos etiquetas y las eliminamos del string
     tag = std::string(line.begin() + matchL.position(), line.begin() + matchL.position() + matchL.length());
     line.erase(line.begin() + matchL.position(), line.begin() + matchL.position() + matchL.length());
     if (tag.size() > 0) {
@@ -178,6 +178,18 @@ bool Ram::Debug() {
         break;
     }
   }
+}
+
+void Ram::HelpDebug() {
+  std::cout << "r: ver los registros"
+             << "t: traza\n"
+             << "e: ejecutar\n"
+             << "s: desensamblador\n"
+             << "i: ver cinta entrada\n"
+             << "o: ver cinta salida\n"
+             << "h: ayuda\n"
+             << "x: salir"
+             << std::endl;
 }
 
 void Ram::Disassemble() {
