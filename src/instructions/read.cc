@@ -2,7 +2,7 @@
 
 #include "../../include/ram.h"
 
-Read::Read(Ram* ram) : Instruction(ram){
+Read::Read(Ram* ram) : Instruction(ram) {
   InitName();
 }
 
@@ -20,6 +20,10 @@ void Read::Execute() {
     case REGISTER:
       value = stoi(operand_);
       break;
+
+    default:
+      throw BadOperandException();
+      break;
   }
 
   mediator_->registers_[value] = mediator_->input_tape_.Get();
@@ -32,7 +36,7 @@ void Read::SetOperand(const std::string& operand) {
   else if (std::regex_match(operand, Regex::Get().register_operand))
     mode_ = REGISTER;
   else
-    throw "MAL OPERANDO";
+    throw BadOperandException();
 
   operand_ = operand;
 }

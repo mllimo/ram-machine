@@ -31,7 +31,7 @@ void Store::SetOperand(const std::string& operand) {
   else if (std::regex_match(operand, Regex::Get().register_operand))
     mode_ = REGISTER;
   else
-    throw "MAL OPERANDO";
+    throw BadOperandException();
 
   operand_ = operand;
 }

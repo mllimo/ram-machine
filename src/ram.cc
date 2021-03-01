@@ -9,7 +9,7 @@ Ram::Ram(const std::string& program_path, bool is_debug) {
   Initialize();
   is_debug_ = is_debug;
   std::fstream input(program_path, std::ios_base::in);
-  if (!input.is_open()) throw;
+  if (!input.is_open()) throw InputException(program_path);
   input >> *this;
   input.close();
 }
@@ -59,14 +59,14 @@ void Ram::Run() {
 
 void Ram::ImportInputTape(const std::string& input_path) {
   std::fstream input(input_path, std::ios_base::in);
-  if (!input.is_open()) throw;
+  if (!input.is_open()) throw InputException(input_path); 
   input >> input_tape_;
   input.close();
 }
 
 void Ram::ExportOutputTape(const std::string& output_path) {
   std::fstream output(output_path, std::ios_base::out);
-  if (!output.is_open()) throw;
+  if (!output.is_open()) throw OutputException(output_path);
   output << output_tape_;
   output.close();
 }
@@ -100,7 +100,7 @@ std::istream& operator>>(std::istream& is, Ram& ram) {
   size_t instruction_counter = 0;
 
   while (std::getline(is, line)) {
-    std::transform(line.begin(), line.end(), line.begin(), [](unsigned char c) { return std::tolower(c); });
+    std::transform(line.begin(), line.end(), line.begin(), [](unsigned char c) { return std::tolower(c); });  // pasar a minuscula
     tag = "";
     std::smatch matchC;
     std::smatch matchL;

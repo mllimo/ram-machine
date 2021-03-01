@@ -2,7 +2,7 @@
 
 #include "../../include/ram.h"
 
-Write::Write(Ram* ram) : Instruction(ram){
+Write::Write(Ram* ram) : Instruction(ram) {
   InitName();
 }
 
@@ -26,8 +26,12 @@ void Write::Execute() {
       value = stoi(operand_);
       value = mediator_->registers_[value];
       break;
+
+    default:
+      throw BadOperandException();
+      break;
   }
-  
+
   mediator_->output_tape_.Add(value);
   mediator_->output_tape_.MoveRight();
 }
@@ -40,7 +44,7 @@ void Write::SetOperand(const std::string& operand) {
   else if (std::regex_match(operand, Regex::Get().register_operand))
     mode_ = REGISTER;
   else
-    throw "MAL OPERANDO";
+    throw BadOperandException();
 
   operand_ = operand;
 }

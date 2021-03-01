@@ -2,7 +2,7 @@
 
 #include "../../include/ram.h"
 
-Mult::Mult(Ram* ram) : Instruction(ram){
+Mult::Mult(Ram* ram) : Instruction(ram) {
   InitName();
 }
 
@@ -26,6 +26,10 @@ void Mult::Execute() {
       value = stoi(operand_);
       value = mediator_->registers_[value];
       break;
+
+    default:
+      throw BadOperandException();
+      break;
   }
 
   mediator_->registers_[0] *= value;
@@ -39,7 +43,7 @@ void Mult::SetOperand(const std::string& operand) {
   else if (std::regex_match(operand, Regex::Get().register_operand))
     mode_ = REGISTER;
   else
-    throw "MAL OPERANDO";
+    throw BadOperandException();
 
   operand_ = operand;
 }

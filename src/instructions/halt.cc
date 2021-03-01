@@ -14,7 +14,7 @@ void Halt::Execute() {
 }
 
 void Halt::SetOperand(const std::string& operand) {
-  if (operand.size() != 0) throw "NO NECESITA ARGUMENTOS";
+  if (operand.size() != 0) throw BadNumberArgumentsException(1, 0);
 }
 
 void Halt::InitName() {

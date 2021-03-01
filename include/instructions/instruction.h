@@ -6,6 +6,7 @@
 #include <string>
 
 #include "../regular_expresions.h"
+#include "exceptions/instruction_exception.h"
 
 enum OperandMode { LITERAL,
                    REGISTER,

@@ -7,6 +7,8 @@
 #include <string>
 #include <unordered_map>
 
+#include "exceptions/io_exception.h"
+#include "exceptions/ram_exception.h"
 #include "instructions/instruction_header.h"
 #include "memory.h"
 #include "program_counter.h"

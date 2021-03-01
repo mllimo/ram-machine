@@ -2,7 +2,7 @@
 
 #include "../../include/ram.h"
 
-Div::Div(Ram* ram) : Instruction(ram){
+Div::Div(Ram* ram) : Instruction(ram) {
   InitName();
 }
 
@@ -26,9 +26,13 @@ void Div::Execute() {
       value = stoi(operand_);
       value = mediator_->registers_[value];
       break;
+
+    default:
+      throw BadOperandException();
+      break;
   }
 
-  if (value == 0) throw "DIVISION ENTRE CERO";
+  if (value == 0) throw std::runtime_error("Math error: Attempted to divide by zero\n");
   mediator_->registers_[0] /= value;
 }
 
@@ -40,7 +44,7 @@ void Div::SetOperand(const std::string& operand) {
   else if (std::regex_match(operand, Regex::Get().register_operand))
     mode_ = REGISTER;
   else
-    throw "MAL OPERANDO";
+    throw BadOperandException();
 
   operand_ = operand;
 }

@@ -14,7 +14,8 @@ include_directories(${GTEST_INCLUDE_DIRS})
 # Codigo fuente
 include_directories(
   "include"
-  "include/instructions" 
+  "include/instructions"
+  "include/exceptions"
 )
 
 file(GLOB SRC 
