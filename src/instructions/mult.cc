@@ -2,6 +2,10 @@
 
 #include "../../include/ram.h"
 
+Mult::Mult(Ram* ram) : Instruction(ram){
+  InitName();
+}
+
 Mult::~Mult() {
 }
 

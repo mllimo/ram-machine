@@ -5,7 +5,7 @@
 
 class Jgtz : public Instruction {
  public:
-  using Instruction::Instruction;
+  Jgtz(Ram* ram);
   ~Jgtz();
 
   void Execute();

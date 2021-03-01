@@ -2,6 +2,10 @@
 
 #include "../../include/ram.h"
 
+Jump::Jump(Ram* ram) : Instruction(ram){
+  InitName();
+}
+
 Jump::~Jump() {
 }
 

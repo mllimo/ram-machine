@@ -2,6 +2,10 @@
 
 #include "../../include/ram.h"
 
+Div::Div(Ram* ram) : Instruction(ram){
+  InitName();
+}
+
 Div::~Div() {
 }
 

@@ -132,44 +132,51 @@ std::ostream& operator<<(std::ostream& os, const Ram& ram) {
 
 bool Ram::Debug() {
   static char option;
+  bool is_next;
   bool good_option;
   while (!good_option) {
     good_option = true;
+    std::cout << "> ";
     std::cin >> option;
     switch (option) {
       case 'r':
         std::cout << registers_ << std::endl;
-        return false;
+        is_next = false;
         break;
 
       case 't':
         Disassemble();
-        return true;
+        is_next = true;
+        break;
+
+      case 's':
+        Disassemble();
+        is_next = false;
         break;
 
       case 'e':
         is_debug_ = false;
-        return true;
+        is_next = true;
         break;
 
       case 'i':
         std::cout << input_tape_ << std::endl;
-        return false;
+        is_next = false;
         break;
 
       case 'o':
         std::cout << output_tape_ << std::endl;
-        return false;
+        is_next = false;
         break;
 
       case 'h':
         HelpDebug();
-        return false;
+        is_next = false;
         break;
 
       case 'x':
         stop_ = true;
-        return false;
+        is_next = false;
         break;
 
       default:
@@ -178,18 +185,19 @@ bool Ram::Debug() {
         break;
     }
   }
+  return is_next;
 }
 
 void Ram::HelpDebug() {
-  std::cout << "r: ver los registros"
-             << "t: traza\n"
-             << "e: ejecutar\n"
-             << "s: desensamblador\n"
-             << "i: ver cinta entrada\n"
-             << "o: ver cinta salida\n"
-             << "h: ayuda\n"
-             << "x: salir"
-             << std::endl;
+  std::cout << "r: ver los registros\n"
+            << "t: traza\n"
+            << "e: ejecutar\n"
+            << "s: desensamblador\n"
+            << "i: ver cinta entrada\n"
+            << "o: ver cinta salida\n"
+            << "h: ayuda\n"
+            << "x: salir"
+            << std::endl;
 }
 
 void Ram::Disassemble() {

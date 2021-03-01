@@ -5,7 +5,7 @@
 
 class Write : public Instruction {
  public:
-  using Instruction::Instruction;
+  Write(Ram* ram);
   ~Write();
 
   void Execute();

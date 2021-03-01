@@ -2,6 +2,10 @@
 
 #include "../../include/ram.h"
 
+Load::Load(Ram* ram) : Instruction(ram){
+  InitName();
+}
+
 Load::~Load() {
 }
 

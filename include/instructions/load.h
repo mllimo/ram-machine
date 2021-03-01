@@ -5,7 +5,7 @@
 
 class Load : public Instruction {
  public:
-  using Instruction::Instruction;
+  Load(Ram* ram);
   ~Load();
 
   void Execute();

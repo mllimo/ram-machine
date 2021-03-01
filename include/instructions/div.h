@@ -5,7 +5,7 @@
 
 class Div : public Instruction {
  public:
-  using Instruction::Instruction;
+  Div(Ram* ram);
   ~Div();
 
   void Execute();

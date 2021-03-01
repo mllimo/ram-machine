@@ -5,7 +5,7 @@
 
 class Jzero : public Instruction {
  public:
-  using Instruction::Instruction;
+  Jzero(Ram* ram);
   ~Jzero();
 
   void Execute();

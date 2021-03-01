@@ -5,7 +5,7 @@
 
 class Halt : public Instruction {
  public:
-  using Instruction::Instruction;
+  Halt(Ram* ram);
   ~Halt();
 
   void Execute();

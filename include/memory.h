@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <string>
-#include <unordered_map>
+#include <map>
 
 template <typename Type>
 class Memory {
@@ -12,11 +12,11 @@ class Memory {
 
   template <typename Other>
   friend std::ostream& operator<<(std::ostream& os, const Memory<Other>& memory);
-  inline std::unordered_map<size_t, Type>& GetTable();
+  inline std::map<size_t, Type>& GetTable();
   inline size_t Size();
 
  private:
-  std::unordered_map<size_t, Type> table_;
+  std::map<size_t, Type> table_;
 };
 
 typedef Memory<int> MemoryI;
@@ -24,7 +24,7 @@ typedef Memory<float> MemoryF;
 typedef Memory<std::string> MemoryS;
 
 template<typename Type>
-std::unordered_map<size_t, Type>& Memory<Type>::GetTable() {
+std::map<size_t, Type>& Memory<Type>::GetTable() {
   return table_;
 }
 

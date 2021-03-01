@@ -2,6 +2,10 @@
 
 #include "../../include/ram.h"
 
+Add::Add(Ram* ram) : Instruction(ram){
+  InitName();
+}
+
 Add::~Add() {
 }
 

@@ -1,6 +1,11 @@
 #include "../../include/instructions/jgtz.h"
 #include "../../include/ram.h"
 
+Jgtz::Jgtz(Ram* ram) : Instruction(ram){
+  InitName();
+}
+
+
 Jgtz::~Jgtz() {
 }
 

@@ -1,5 +1,10 @@
 #include "../../include/instructions/halt.h"
+
 #include "../../include/ram.h"
+
+Halt::Halt(Ram* ram) : Instruction(ram) {
+  InitName();
+}
 
 Halt::~Halt() {
 }

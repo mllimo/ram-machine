@@ -5,7 +5,7 @@
 
 class Jump : public Instruction {
  public:
-  using Instruction::Instruction;
+  Jump(Ram* ram);
   ~Jump();
 
   void Execute();

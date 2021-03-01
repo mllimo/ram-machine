@@ -5,7 +5,7 @@
 
 class Mult : public Instruction {
  public:
-  using Instruction::Instruction;
+  Mult(Ram* ram);
   ~Mult();
 
   void Execute();

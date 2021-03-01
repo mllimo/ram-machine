@@ -2,6 +2,10 @@
 
 #include "../../include/ram.h"
 
+Store::Store(Ram* ram) : Instruction(ram){
+  InitName();
+}
+
 Store::~Store() {
 }
 

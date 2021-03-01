@@ -2,6 +2,10 @@
 
 #include "../../include/ram.h"
 
+Jzero::Jzero(Ram* ram) : Instruction(ram){
+  InitName();
+}
+
 Jzero::~Jzero() {
 }
 

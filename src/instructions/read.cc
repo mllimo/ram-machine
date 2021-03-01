@@ -2,6 +2,10 @@
 
 #include "../../include/ram.h"
 
+Read::Read(Ram* ram) : Instruction(ram){
+  InitName();
+}
+
 Read::~Read() {
 }
 

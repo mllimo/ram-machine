@@ -31,7 +31,7 @@ class Instruction {
   std::string operand_;
   OperandMode mode_;
 
-  virtual void InitName();
+  virtual void InitName() = 0;
 };
 
 #endif

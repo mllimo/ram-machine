@@ -5,7 +5,7 @@
 
 class Store : public Instruction {
  public:
-  using Instruction::Instruction;
+  Store(Ram* ram);
   ~Store();
 
   void Execute();

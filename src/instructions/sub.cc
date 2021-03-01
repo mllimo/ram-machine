@@ -2,6 +2,11 @@
 
 #include "../../include/ram.h"
 
+Sub::Sub(Ram* ram) : Instruction(ram){
+  InitName();
+}
+
+
 Sub::~Sub() {
 }
 

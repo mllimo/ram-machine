@@ -3,7 +3,7 @@
 ProgramRam::~ProgramRam() {}
 
 int ProgramRam::Run() {
-  Ram ram(arg_[1]);
+  Ram ram(arg_[1], std::stoi(arg_[4]));
   ram.ImportInputTape(arg_[2]);
   ram.Run();
   ram.ExportOutputTape(arg_[3]);

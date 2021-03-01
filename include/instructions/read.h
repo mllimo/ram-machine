@@ -5,7 +5,7 @@
 
 class Read : public Instruction {
  public:
-  using Instruction::Instruction;
+  Read(Ram* ram);
   ~Read();
 
   void Execute();

@@ -5,7 +5,7 @@
 
 class Add : public Instruction {
  public:
-  using Instruction::Instruction;
+  Add(Ram* ram);
   ~Add();
 
   void Execute();

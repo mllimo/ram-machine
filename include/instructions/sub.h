@@ -5,7 +5,8 @@
 
 class Sub : public Instruction {
  public:
-  using Instruction::Instruction;
+
+  Sub(Ram* ram);
   ~Sub();
 
   void Execute();
