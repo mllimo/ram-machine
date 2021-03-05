@@ -19,11 +19,13 @@ void Write::Execute() {
     case POINTER:
       value = stoi(std::string(operand_.begin() + 1, operand_.end()));
       value = mediator_->registers_[value];
+      if (value == 0) throw BadOperandException();
       value = mediator_->registers_[value];
       break;
 
     case REGISTER:
       value = stoi(operand_);
+      if (value == 0) throw BadOperandException();
       value = mediator_->registers_[value];
       break;
 

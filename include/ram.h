@@ -17,20 +17,6 @@
 
 class Ram {
  public:
-  friend Instruction;
-  friend Add;
-  friend Sub;
-  friend Div;
-  friend Mult;
-  friend Load;
-  friend Store;
-  friend Read;
-  friend Write;
-  friend Jump;
-  friend Jzero;
-  friend Jgtz;
-  friend Halt;
-
   Ram();
   Ram(const std::string& program_path, bool is_debug = 0);
   ~Ram();
@@ -42,7 +28,7 @@ class Ram {
   friend std::ostream& operator<<(std::ostream& os, const Ram& ram);
   inline size_t InstructionsExecuted() { return instructions_executed_; }
 
- private:
+ public:
   MemoryI registers_;
   Memory<Instruction*> program_;
   ProgramCounter program_counter_;
@@ -55,6 +41,7 @@ class Ram {
   std::unordered_map<std::string, size_t> tag_index_;
   std::unordered_map<std::string, std::function<Instruction*(void)>> instruction_set_;
 
+ private:
   bool Debug();
   void HelpDebug();
   void Disassemble();
