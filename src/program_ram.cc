@@ -4,7 +4,11 @@ ProgramRam::~ProgramRam() {}
 
 int ProgramRam::Run() {
   try {
-    if (arg_.size() != 5) throw BadNumberArgumentsException(4, arg_.size() - 1);
+    if (arg_.size() != 5) {
+      ShowUsage();
+      return 0;
+    }
+
     Ram ram(arg_[1], std::stoi(arg_[4]));
     ram.ImportInputTape(arg_[2]);
     ram.Run();

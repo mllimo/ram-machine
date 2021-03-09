@@ -1,0 +1,20 @@
+       load =1 ; acumulador
+       store 2 ; se almacena la variable acumulador en registro 2
+       read 1  ; leemos la variable n y la guardamos en registro 1
+       load 1
+       store 3 ; variable i para el bucle de n -> 0
+
+bucle: load 3
+       jgtz bloque
+       jump fin
+
+bloque:  load 2
+       mult 1
+       store 2
+       load 3
+       sub =1
+       store 3
+       jump bucle
+
+fin:   write 2        ; Mostramos el resultado
+       halt
